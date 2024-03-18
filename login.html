@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New login page</title>
+    <!--box icon link--><link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            color: white;
+        }
+        body{
+            background-image: url(./login.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        form{
+            
+            background-color: transparent;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 150px;
+            border: 2px white solid;
+            backdrop-filter:blur(10px); /* new it makes bg blur*/
+            text-align: center;
+            max-width: 500px;
+            border-radius: 10px;
+            padding: 20px 0px;
+            box-shadow: 5px 5px rgb(136, 136, 238);
+            
+        }
+        
+        
+        
+        h1{
+            text-align: center;
+            margin: 50px 0px;
+        }
+        .login{
+            text-align: center;
+        }
+        
+        .input{
+            padding: 4px 15%;
+            margin: 15px;
+            border-radius: 20%;
+            text-align: center;
+            background-color: transparent;
+            border: 2px white solid;
+            box-shadow: 5px 5px rgb(64, 64, 249);
+           
+        }
+        .input:hover{
+            background-color:rgba(60, 46, 212, 0.532);
+        }
+        .input:focus{
+            background-color: rgb(5, 106, 248);
+            border: 2px;
+        }
+        .input::placeholder{
+            color: white;
+        }
+
+        #submit{
+            color: black;
+            font-size: medium;
+            font-weight:700;
+            background-color: #f76c16;
+            padding: 3px;
+            border: 2px solid #f76c16;
+            border-radius: 10px;
+            margin: 10px 0px;
+            cursor: pointer;
+            transition: .5s;
+        }
+        #submit:hover{
+            background-color: #f58b49;
+        }
+        .others{
+            margin: 15px 0px;
+            
+        }
+    
+        .remember{
+            float: left;
+            margin-left: 10px;
+            cursor: pointer;
+
+        }
+       
+       
+        #forgot{
+            float: right;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: 1.5s;
+        }
+        #forgot:hover{
+            color: #f76910;
+        }
+        /* span{
+            float: left;
+            margin: 15px 0px;
+            border-radius: 20px;
+            width: 60px;
+           
+        } */
+        .alternate{
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+        .or{
+            color: black;
+            margin: 10px 0px;
+            font-size: medium;
+            font-weight: 500;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
+            transition: 1s; /*new, on hover some transition happen */
+            
+        }
+        .or:hover{
+            background-color:rgb(251, 215, 71);
+        }
+        .bxl-google{
+            color: rgb(248, 12, 12);
+            
+          
+        }
+        .bxl-linkedin-square{
+            color: rgb(19, 130, 175);
+            
+        }
+        #stre{
+            background-color: #f76910;
+            margin: 15px 0px;
+            border-radius: 20px;
+            width: 60px;
+        }
+
+        #account{
+            font-size: large;
+
+        }
+        #account:hover{
+            opacity:0.8;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="form">
+    <form name="f1" action="authentication.php" onsubmit="return validation()" method="post">
+        <div>Login Now to move on next page!!</div>
+
+        <div class="form">
+            <h1>LOGIN</h1>
+            <p id="invalid" style="background-color: #f76c16; width: 50%;border-radius: 20px;margin-left: auto;margin-right: auto;"></p>
+            <i class='bx bxs-user'></i> <!-- new icon by boxicon website copy url of link head section than copy icon link-->
+            <input type="text" class="input" name="username" id="user" placeholder="Username" required>
+            <br>
+            <i class='bx bxs-lock-alt' ></i>
+            <input type="password" class="input" id="pass" name="password" onkeyup="strength()" placeholder="Password" required>
+            <br>
+            <p id="stre" style="background-color: #f76c16; width: 30%;border-radius: 20px;margin-left: auto;margin-right: auto;"></p>
+
+            <button type="submit" id="submit" >Submit</button>
+            <div><div class="remember"><input id="checkbox" type="checkbox">Remember me</div>
+            <a href="#" id="forgot">Forgot password?</a></div>
+
+            <br>
+        <p>OR</p>
+        <div class="alternate">
+        <button type="button" class="or">Login with <i class='bx bxl-google' ></i></button>
+        <hr>
+        <button type="button" class="or">Login with <i class='bx bxl-linkedin-square' ></i></button>
+        <p>OR</p>
+
+        <div class="text-white bg-white font-weight-bolder"><a href="signup.html" id="account">Sign Up: Create a new account!!</a></div>
+
+        </div>
+    </div> 
+</form>
+
+<script>
+    function validation()  
+            {  
+                var id=document.f1.user.value;  
+                var ps=document.f1.pass.value;  
+                if(id.length=="" && ps.length=="") {  
+                    alert("User Name and Password fields are empty");  
+                    return false;  
+                }  
+                else  
+                {  
+                    if(id.length=="") {  
+                        alert("User Name is empty");  
+                        return false;  
+                    }   
+                    if (ps.length=="") {  
+                    alert("Password field is empty");  
+                    return false;  
+                    }  
+                }                             
+            }  
+//events in js are:
+// onclick,onsubmit,onfocus,onblur,onmouseover,onchange,onkeyup.
+
+    //function which checks the gives the validation of a input fields by user
+//     function validation(){
+//         var u= document.getElementById("user").value;
+//         var p= document.getElementById("pass").value;
+//          if (u.length <5 || p.length<5){
+//             document.getElementById("invalid").innerHTML= "Invalid Username or Password";
+//             console.log("validate");
+//             return false;
+//         }
+//          return true;
+//         }
+// // fuction which check the strength of a password
+//         function strength(){
+//             var p= document.getElementById("pass").value;
+//             if(p.length<5){
+//                 document.getElementById("stre").innerHTML="Password is poor";
+//             }
+//             else if(p.length>=5 && p.length<10){
+//                 document.getElementById("stre").innerHTML="Password is good";
+//             }
+//             else
+//             {
+//                 document.getElementById("stre").innerHTML="Password is strong";
+//             }
+
+//         }
+
+</script>
+    
+</body>
+</html>

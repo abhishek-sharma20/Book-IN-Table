@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <title>Sign Up</title>
+  <style> 
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    fieldset {
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    legend {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      outline: none;
+      transition: background-color 0.3s;
+    }
+
+    input:focus {
+      background-color: #f0f8ff;
+    }
+
+    input[type="submit"] {
+      width: auto;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+    }
+
+    .login {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form action="register.php" method="post" onsubmit="return validateForm()">
+    <fieldset>
+      <legend>Sign Up</legend>
+      Username: <input type="text" name="username" id="username">
+      <span id="usernameError" class="error"></span><br>
+
+      <div class="radio-group" id="ab">
+        <label><input type="radio" name="ab" value="Male" id="genderMale"> Male</label>
+        <label><input type="radio" name="ab" value="female" id="genderFemale"> Female</label>
+      </div>
+
+      DOB: <input type="date" name="dob" id="dob">
+      <span id="dobError" class="error"></span><br>
+
+      Email: <input type="email" name="email" id="email">
+      <span id="emailError" class="error"></span><br>
+
+      Mobile: <input type="tel" name="number" id="number">
+      <span id="numberError" class="error"></span><br>
+
+      Password: <input type="password" name="password" id="password">
+      <span id="passwordError" class="error"></span><br>
+
+      <input type="submit" value="Sign Up" name="signup">
+    </fieldset>
+
+    <div class="text-center">OR</div>
+    <div class="login"><a href="login.html">Login Now!!</a></div>
+  </form>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById('username').value;
+      var dob = document.getElementById('dob').value;
+      var email = document.getElementById('email').value;
+      var number = document.getElementById('number').value;
+      var password = document.getElementById('password').value;
+      var genderMale = document.getElementById('genderMale').checked;
+    var genderFemale = document.getElementById('genderFemale').checked;
+
+  
+      // Validate username
+      if (username === '') {
+        alert('Username is required');
+        return false;
+      }
+      if (!genderMale && !genderFemale) {
+      alert('Select a gender');
+      return false;
+    }
+  
+      // Validate date of birth
+    var currentDate = new Date();
+    var selectedDate = new Date(dob);
+
+    if (dob==='' || selectedDate >= currentDate) {
+      alert("Please select a valid dob");
+      return false;
+    }
+  
+      // Validate email
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert('Enter a valid email address');
+        return false;
+      }
+  
+      // Validate phone number
+      var phoneRegex = /^\+\d{1,4}\d{10}$/;
+    if (!phoneRegex.test(number)) {
+      alert("Please enter a valid phone number with country code");
+      return false;
+    }
+  
+      // Validate password
+      var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordPattern.test(password)) {
+      alert('Password should be at least 6 characters, including at least one uppercase letter, one lowercase letter, one digit, and one special character (@, $, !, %, *, ?, &)');
+      return false;
+    }
+  
+      // If all validations pass, the form will be submitted
+      return true;
+    }
+  </script>
+  
+</body>
+</html>
