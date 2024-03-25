@@ -5,7 +5,7 @@
 // $password = "Z3Qtr7S7VzqcSu";
 // $dbname = "if0_35428446_reviews";
 
-$host = "localhost";  
+$host = "localhost";
 $username = "root";
 $password = "";
 $dbname = "reviews";
